@@ -9,7 +9,7 @@ public class SmoothSliderBarHP : HealthBar
     private Slider _healthSlider;
 
     private float _currentDisplayHealth;
-    private float _ratio = 100;
+    private float _ratio;
     private float _smoothTime = 0.0075f;
 
     private Coroutine _smoothCoroutine;
@@ -17,6 +17,8 @@ public class SmoothSliderBarHP : HealthBar
 
     private void Awake()
     {
+        _ratio = PlayerHealth.MaxValue;
+
         _healthSlider = GetComponent<Slider>();
     }
 
