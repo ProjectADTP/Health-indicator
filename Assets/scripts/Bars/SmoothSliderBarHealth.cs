@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 [RequireComponent(typeof(Slider))]
 public class SmoothSliderBarHP : HealthBar
@@ -33,7 +34,7 @@ public class SmoothSliderBarHP : HealthBar
     {
         _isSmoothing = true;
 
-        while (_currentDisplayHealth != health / _ratio)
+        while (Mathf.Approximately(_currentDisplayHealth, health / _ratio) == false)
         {
             _currentDisplayHealth = Mathf.MoveTowards(_currentDisplayHealth,
                                                 health / _ratio,

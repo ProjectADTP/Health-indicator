@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class DamageButton : Input_Button
+public class DamageButton : InputButton
 {
+    private int _damage = 25;
+
     protected override void ChangeHealth()
     {
-        Value.TakeDamage(Health);
+        Value.TakeDamage(_damage);
     }
 }
