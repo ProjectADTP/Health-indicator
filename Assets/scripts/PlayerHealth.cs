@@ -2,19 +2,19 @@ using UnityEngine;
 using System;
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int _health;
+    [SerializeField] private int _value;
 
-    private int _minHealth = 0;
-    private int _maxHealth = 100;
+    private int _minValue = 0;
+    private int _maxValue = 100;
 
-    public int Health { get; private set; }
-    public int MaxHealth => _maxHealth;
+    public int Value { get; private set; }
+    public int MaxValue => _maxValue;
 
-    public event Action OnHealthChanged;
+    public event Action<int> ChangedHealth;
 
     private void Awake()
     {
-        Health = _health;
+        Value = _value;
     }
 
     public void TakeDamage(int damage)
@@ -25,10 +25,10 @@ public class PlayerHealth : MonoBehaviour
     public void RestoreHealth(int health)
     {
         if (health != 0)
-            Health = Mathf.Clamp(health + Health, _minHealth, _maxHealth);
+            Value = Mathf.Clamp(health + Value, _minValue, _maxValue);
         else
-            Health = _maxHealth;
+            Value = _maxValue;
 
-        OnHealthChanged?.Invoke();
+        ChangedHealth?.Invoke(Value);
     }
 }
